@@ -47,7 +47,7 @@ def search_memory(query: str):
         vector_store_id=vector_store.id,
         query=query,
     )
-
+# Extract and return the text content from the search results
     content_texts = [
         content.text
         for item in results.data
