@@ -57,3 +57,8 @@ def search_memory(query: str):
 
     return {"results": content_texts}
 
+if __name__ == "__main__":
+    mcp.run(transport= "stdio")
+
+# To test if the server is configured correctly,  you can run this script and then use the following 
+# curl commands in a separate terminal: mcp dev server.py 
