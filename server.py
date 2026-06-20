@@ -24,3 +24,17 @@ def get_or_create_vector_store():
         if store.name == VECTOR_STORE_NAME:
             return store
     return client.vector_stores.create(name=VECTOR_STORE_NAME)
+
+@mcp.tool()
+def save_memory(memory: str):
+    """Save a memory string to the vector store."""
+    vector_store = get_or_create_vector_store()
+    # Save memory to a temp file for upload
+    with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix=".txt") as f:
+        f.write(memory)
+        f.flush()
+        client.vector_stores.files.upload_and_poll(
+            vector_store_id=vector_store.id,
+            file=open(f.name, "rb")
+        )
+    return {"status": "saved", "vector_store_id": vector_store.id}
