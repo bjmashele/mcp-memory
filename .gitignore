@@ -21,3 +21,11 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+
+.DS_Store
+.env
+.env.*
+*.log
+*.tmp
+*.bak
+
